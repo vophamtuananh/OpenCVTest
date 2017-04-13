@@ -9,6 +9,20 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds it for you.
 # Gradle automatically packages shared libraries with your APK.
 
+set(pathToProject /Users/vophamtuananh/Android/Projects/OpenCVTest)
+set(pathToOpenCv /Users/vophamtuananh/Android/Projects/OpenCV-android-sdk)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+set(CMAKE_VERBOSE_MAKEFILE on)
+
+include_directories(${pathToOpenCv}/sdk/native/jni/include)
+
+add_library( lib_opencv SHARED IMPORTED )
+
+set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${pathToProject}/app/src/main/jniLibs/${ANDROID_ABI}/libopencv_java3.so)
+
+#Added by IDE on project create
+
 add_library( # Sets the name of the library.
              native-lib
 
@@ -20,9 +34,9 @@ add_library( # Sets the name of the library.
              # file are automatically included.
              src/main/cpp/native-lib.cpp )
 
-add_library( detection-lib
+add_library( face-detection-lib
              SHARED
-             src/main/cpp/anh_com_opencvtest_DetectionUtil.cpp )
+             src/main/cpp/anh_com_opencvtest_FaceDetection.cpp )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because system libraries are included in the search path by
@@ -47,9 +61,5 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )
-target_link_libraries( # Specifies the target library.
-                       detection-lib
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+target_link_libraries( face-detection-lib $\{log-lib} lib_opencv)

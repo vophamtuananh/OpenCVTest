@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     private static final String TAG = "MainActivity";
 
     static {
-        System.loadLibrary("detection-lib");
+        System.loadLibrary("face-detection-lib");
     }
-
-    public native static String stringFromJNI();
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -49,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         javaCameraView = (JavaCameraView) findViewById(R.id.opencv_Camera);
         javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(this);
-        TextView textView = (TextView) findViewById(R.id.sample_text);
-        textView.setText(DetectionUtil.getMessageFromJNI());
     }
 
     @Override

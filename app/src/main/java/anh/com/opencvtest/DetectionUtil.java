@@ -6,6 +6,4 @@ package anh.com.opencvtest;
 
 public class DetectionUtil {
     public native static String getMessageFromJNI();
-
-    public native static int convertGray(long matAddRgba, long matAddFray);
 }

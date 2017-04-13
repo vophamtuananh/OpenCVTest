@@ -12,8 +12,20 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags ""
+                //DRS 20160825 - Commented 1, Added 1 - - Suggestion by Bruno Alexandre Krinski
+                //cppFlags "-frtti -fexceptions"
+                cppFlags "-std=c++11 -frtti -fexceptions"
+
+                //DRS 20160822h - Added 1.  Later replaced by 20160825
+                //abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+                //DRS 20160825 - Suggestion by Bruno Alexandre Krinski
+                abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips', 'mips64'
             }
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['Users\\vophamtuananh\\Android\\Projects\\OpenCVTest\\app\\src\\main\\jniLibs']
         }
     }
     buildTypes {
@@ -21,6 +33,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        sourceSets { main { jniLibs.srcDirs = ['/Users/vophamtuananh/Android/Projects/OpenCVTest/app/src/main/jniLibs/'] } }
     }
     externalNativeBuild {
         cmake {
