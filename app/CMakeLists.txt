@@ -62,4 +62,11 @@ target_link_libraries( # Specifies the target library.
                        # included in the NDK.
                        ${log-lib} )
 
-target_link_libraries( face-detection-lib $\{log-lib} lib_opencv)
+target_link_libraries( # Specifies the target library.
+                       face-detection-lib
+
+                       # Links the target library to the log library
+                       # included in the NDK.
+                       ${log-lib} )
+
+target_link_libraries( face-detection-lib lib_opencv)

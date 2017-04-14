@@ -6,4 +6,6 @@ package anh.com.opencvtest;
 
 public class FaceDetection {
     public native static void faceDetection(long addrRgba);
+
+    public native static void removeBG(long addrRgbaOrigin, long addrRgba);
 }
